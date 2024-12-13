@@ -1,4 +1,4 @@
-import 'package:bip45/bip45.dart';
+import 'package:bip48/bip48.dart';
 import 'package:test/test.dart';
 
 void main() {

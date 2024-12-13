@@ -3,6 +3,6 @@
 /// More dartdocs go here.
 library;
 
-export 'src/bip45_base.dart';
+export 'src/bip48_base.dart';
 
 // TODO: Export any libraries intended for clients of this package.
