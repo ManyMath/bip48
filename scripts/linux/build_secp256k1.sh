@@ -1,6 +1,8 @@
 # This script is provided in case `dart run coinlib:build_linux` fails.
 #
-# Adapted from Stack Wallet's secp256k1 build script.
+# Adapted from Stack Wallet's secp256k1 build script. See
+# https://github.com/cypherstack/stack_wallet/tree/staging/scripts for scripts for additional
+# platforms.
 
 mkdir -p build
 cd build
