@@ -5,7 +5,7 @@ Used to derive "shared accounts" from Hierarchical Deterministic (HD) wallets.
 
 ## Getting started
 ```bash
-git clone https://github.com/ManyMath/bip48
+git clone https://github.com/cypherstack/bip48
 cd bip48
 dart pub get
 dart run coinlib:build_linux
