@@ -1,6 +1,6 @@
 name: bip48
 description: BIP-0048 "Multi-Script Hierarchy for Multi-Sig Wallets" for Dart.
-version: 0.0.01
+version: 0.0.1
 repository: https://github.com/ManyMath/bip48
 license: MIT
 
@@ -8,6 +8,7 @@ environment:
   sdk: ^3.5.4
 
 dependencies:
+  coinlib: ^2.2.0
 
 dev_dependencies:
   lints: ^4.0.0
