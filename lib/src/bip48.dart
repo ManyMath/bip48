@@ -38,8 +38,10 @@ class Bip48Wallet {
   final int threshold;
   final int totalKeys;
 
+  /// List of cosigner HDPublicKeys.
   final List<HDPublicKey> cosignerKeys = [];
 
+  /// Optional network to use (defaults to bitcoin mainnet).
   final Network network;
 
   bool get canSign => _accountPrivKey != null;
@@ -81,7 +83,7 @@ class Bip48Wallet {
     }
   }
 
-  /// Return the xpub for this account.
+  /// Return the xpub for this account, using the provided [network]’s prefix.
   String get accountXpub {
     if (_accountPrivKey != null) {
       final pub = _accountPrivKey!.hdPublicKey;
