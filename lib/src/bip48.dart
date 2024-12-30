@@ -40,6 +40,8 @@ class Bip48Wallet {
 
   final List<HDPublicKey> cosignerKeys = [];
 
+  final Network network;
+
   bool get canSign => _accountPrivKey != null;
 
   Bip48Wallet({
@@ -50,7 +52,10 @@ class Bip48Wallet {
     required this.scriptType,
     required this.threshold,
     required this.totalKeys,
-  }) {
+    // Provide a default so existing code won't break,
+    // but still allow the caller to override the network.
+    Network? network,
+  }) : network = network ?? bitcoinNetwork.mainnet {
     if (threshold < 1 || threshold > totalKeys) {
       throw ArgumentError(
           "Invalid threshold=$threshold for totalKeys=$totalKeys");
@@ -80,9 +85,9 @@ class Bip48Wallet {
   String get accountXpub {
     if (_accountPrivKey != null) {
       final pub = _accountPrivKey!.hdPublicKey;
-      return pub.encode(bitcoinNetwork.mainnet.pubHDPrefix);
+      return pub.encode(network.pubHDPrefix);
     } else {
-      return _accountPubKey!.encode(bitcoinNetwork.mainnet.pubHDPrefix);
+      return _accountPubKey!.encode(network.pubHDPrefix);
     }
   }
 
@@ -161,20 +166,20 @@ class Bip48Wallet {
       case Bip48ScriptType.p2shMultisig:
         return P2SHAddress.fromRedeemScript(
           script,
-          version: bitcoinNetwork.mainnet.p2shPrefix,
+          version: network.p2shPrefix,
         ).toString();
 
       case Bip48ScriptType.p2shP2wshMultisig:
         final witnessProg = P2WSH.fromWitnessScript(script);
         return P2SHAddress.fromRedeemScript(
           witnessProg.script,
-          version: bitcoinNetwork.mainnet.p2shPrefix,
+          version: network.p2shPrefix,
         ).toString();
 
       case Bip48ScriptType.p2wshMultisig:
         return P2WSHAddress.fromWitnessScript(
           script,
-          hrp: bitcoinNetwork.mainnet.bech32Hrp,
+          hrp: network.bech32Hrp,
         ).toString();
     }
   }
