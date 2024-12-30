@@ -1,3 +1,7 @@
+## 0.0.4
+
+- Allow custom Networks.
+
 ## 0.0.3
 
 - Restructure package and export Bitcoin network.
